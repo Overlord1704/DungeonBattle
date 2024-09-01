@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1t120kw5vju8"]
+
+[ext_resource type="Script" path="res://scenes/Weapons/weapon.gd" id="1_8xtyf"]
+
+[sub_resource type="Curve2D" id="Curve2D_s7uvs"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_8xtyf")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s7uvs")
