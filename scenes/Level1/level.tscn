@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://uj483r06nf3r"]
+[gd_scene load_steps=5 format=3 uid="uid://uj483r06nf3r"]
 
+[ext_resource type="Script" path="res://scenes/Level1/level.gd" id="1_j8jrs"]
 [ext_resource type="PackedScene" uid="uid://djuion46eih1y" path="res://scenes/player/player.tscn" id="1_tjqw5"]
+[ext_resource type="PackedScene" uid="uid://dnk13d8ta4v2k" path="res://scenes/Enemies/Big-Orc/Big-Orc.tscn" id="4_6vsfv"]
+[ext_resource type="PackedScene" uid="uid://c75d6tlard43w" path="res://scenes/Enemies/Chort/Chort.tscn" id="6_pi7xu"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_j8jrs")
+
+[node name="Chort" parent="." instance=ExtResource("6_pi7xu")]
+position = Vector2(539, 432)
 
 [node name="Player" parent="." instance=ExtResource("1_tjqw5")]
-position = Vector2(464, 184)
+position = Vector2(531, 192)
+
+[node name="BigOrc" parent="." instance=ExtResource("4_6vsfv")]
+position = Vector2(136, 128)

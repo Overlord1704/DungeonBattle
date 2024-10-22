@@ -9,7 +9,7 @@ var states : Dictionary
 var current_state : State
 
 func _ready():
-	if get_parent() is CharacterBody2D:
+	if get_parent() is Unit:
 		player = get_parent()
 		
 	if player:
@@ -22,7 +22,8 @@ func _ready():
 			states[child_machine.name.to_lower()] = child_machine
 			child_machine.transit.connect(transit)
 			child_machine.player = player
-			child_machine.playback = anim_tree["parameters/playback"]
+			if anim_tree:
+				child_machine.playback = anim_tree["parameters/playback"]
 	
 	if init_state:
 		init_state.Enter()
@@ -30,10 +31,11 @@ func _ready():
 	
 func _process(delta):
 	current_state.Update(delta)
-
+	
+	
 func _physics_process(delta):
 	current_state.PhisicsUpdate(delta)
-	print(current_state)
+	
 	
 func transit(cur_state : State,new_state_name : String):
 	if !cur_state:

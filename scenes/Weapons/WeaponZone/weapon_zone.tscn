@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagqglcbowa21"]
+
+[ext_resource type="Script" path="res://scenes/Weapons/WeaponZone/weapon_zone.gd" id="1_shu2a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_he8l6"]
+radius = 64.0
+
+[node name="WeaponZone" type="Area2D"]
+scale = Vector2(0.560001, 0.560001)
+script = ExtResource("1_shu2a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_he8l6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 0.523599
+scale = Vector2(5.75, 5.75)
+region_rect = Rect2(304, 8, 16, 24)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
