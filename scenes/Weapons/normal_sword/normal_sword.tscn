@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dan6u6btnxu47"]
+
+[ext_resource type="PackedScene" uid="uid://db2d21t1wdj0y" path="res://scenes/Weapons/RustySword/rusty_sword.tscn" id="1_2kpdb"]
+[ext_resource type="Script" path="res://scenes/Weapons/normal_sword/normal_sword.gd" id="2_vpnu4"]
+[ext_resource type="Texture2D" uid="uid://bhd1ia2t0426l" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_regular_sword.png" id="3_ratjb"]
+
+[sub_resource type="Curve2D" id="Curve2D_g2n4e"]
+_data = {
+"points": PackedVector2Array(-5.04538, 4.83515, 5.04538, -4.83515, -32, 0, -3.15336, 0.210224, 3.15336, -0.210224, 0, -8, -2.73291, -3.36359, 2.73291, 3.36359, 32, 0)
+}
+point_count = 3
+
+[node name="NormalSword" instance=ExtResource("1_2kpdb")]
+scale = Vector2(3.12222, 3.12222)
+script = ExtResource("2_vpnu4")
+damage = 1
+speed_attack = 20
+push_power = 40
+
+[node name="Path2D" parent="." index="0"]
+self_modulate = Color(0.08, 0.08, 0.08, 1)
+curve = SubResource("Curve2D_g2n4e")
+
+[node name="Sprite2D" parent="Path2D/PathFollow2D" index="0"]
+texture = ExtResource("3_ratjb")
+region_rect = Rect2(320, 8, 16, 24)
+
+[editable path="Path2D/PathFollow2D/HitBoxComponent"]

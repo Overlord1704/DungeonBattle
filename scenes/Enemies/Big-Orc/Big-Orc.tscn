@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnk13d8ta4v2k"]
+
+[ext_resource type="Script" path="res://scenes/Enemies/Big-Orc/Orc.gd" id="1_3uih3"]
+[ext_resource type="Texture2D" uid="uid://djtbqe45n2nrc" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="1_y2xog"]
+[ext_resource type="Script" path="res://global-scripts/state_machine.gd" id="2_77ksl"]
+[ext_resource type="Script" path="res://scenes/Enemies/Big-Orc/IdleOrc.gd" id="3_4ot0m"]
+[ext_resource type="Script" path="res://scenes/Enemies/Big-Orc/FollowOrc.gd" id="4_jsg5n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvkkq"]
+size = Vector2(80, 96)
+
+[node name="BigOrc" type="CharacterBody2D"]
+script = ExtResource("1_3uih3")
+health = 100
+speed_unit = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(4, 3.55556)
+texture = ExtResource("1_y2xog")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_yvkkq")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("2_77ksl")
+init_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_4ot0m")
+follow_zone_lenght = 300.0
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("4_jsg5n")
+follow_zone_lenght = 300.0

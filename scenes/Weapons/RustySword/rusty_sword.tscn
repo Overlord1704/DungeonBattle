@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://db2d21t1wdj0y"]
+
+[ext_resource type="Script" path="res://scenes/Weapons/RustySword/rusty_sword.gd" id="1_n18dl"]
+[ext_resource type="Texture2D" uid="uid://cxwxdc8r8jam7" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_rusty_sword.png" id="2_xrwfj"]
+[ext_resource type="PackedScene" uid="uid://5uh3ybadnw0i" path="res://scenes/Components/HitBox/hit_box_component.tscn" id="3_wa6m4"]
+
+[sub_resource type="Curve2D" id="Curve2D_2cdfo"]
+_data = {
+"points": PackedVector2Array(-5.04538, 4.83515, 5.04538, -4.83515, -32, 0, -3.15336, 0.210224, 3.15336, -0.210224, 0, -8, -2.73291, -3.36359, 2.73291, 3.36359, 32, 0)
+}
+point_count = 3
+
+[node name="RustySword" type="Node2D" node_paths=PackedStringArray("HitBox", "Trajectory", "HitBoxCollision")]
+scale = Vector2(2.90273, 2.90273)
+script = ExtResource("1_n18dl")
+speed_attack = 10
+HitBox = NodePath("Path2D/PathFollow2D/HitBoxComponent")
+Trajectory = NodePath("Path2D/PathFollow2D")
+HitBoxCollision = NodePath("Path2D/PathFollow2D/HitBoxComponent/Area2D/CollisionShape2D")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(22.0482, -9.31323e-10)
+rotation = 1.57029
+curve = SubResource("Curve2D_2cdfo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-32, 0)
+rotation = -0.764124
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture_filter = 1
+texture = ExtResource("2_xrwfj")
+region_rect = Rect2(304, 8, 16, 24)
+
+[node name="HitBoxComponent" parent="Path2D/PathFollow2D" instance=ExtResource("3_wa6m4")]
+
+[node name="CollisionShape2D" parent="Path2D/PathFollow2D/HitBoxComponent/Area2D" index="0"]
+position = Vector2(0.120335, 1.90735e-06)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-34.8559, 0)
+scale = Vector2(2.24625, 1.25947)
+points = PackedVector2Array(24.8042, -24.8042, 27.4171, -15.3177, 28.5138, -6.56473, 28.5138, -2.01798, 28.5138, 4.37649, 27.7868, 13.1295, 26.5599, 19.6942, 24.8042, 27.5603)
+width = 0.5
+default_color = Color(0.201527, 0.201527, 0.201527, 1)
+
+[editable path="Path2D/PathFollow2D/HitBoxComponent"]

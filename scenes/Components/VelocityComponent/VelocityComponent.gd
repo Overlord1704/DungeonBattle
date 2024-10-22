@@ -16,3 +16,5 @@ func Move(player : CharacterBody2D):
 	Vector = player.Direction
 	player.velocity = Velocity
 	player.move_and_slide()
+
+	
